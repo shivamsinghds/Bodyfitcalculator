@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calorie Deficit Calculator - Bodyfitcalculator</title>
+    <meta name="description" content="Calculate your daily calorie deficit for safe weight loss. Get accurate TDEE calculations using the Mifflin-St Jeor equation. Free calorie deficit calculator with expert guidance.">
+    <meta name="keywords" content="calorie deficit calculator, TDEE calculator, weight loss calculator, calorie calculator, BMR calculator, Mifflin St Jeor">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Calorie Deficit Calculator",
+        "description": "Free calorie deficit calculator using TDEE and BMR calculations",
+        "url": "https://healthcalc.com/calorie-calculator.html",
+        "applicationCategory": "HealthApplication",
+        "operatingSystem": "Any"
+    }
+    </script>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-container">
+                <div class="logo">
+                    <a href="index.html"><h1>Bodyfitcalculator</h1></a>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="calorie-calculator.html" class="nav-link active">Calorie Deficit Calculator</a></li>
+                    <li><a href="body-fat-calculator.html" class="nav-link">Body Fat Calculator</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main">
+        <section class="calculator-page">
+            <div class="container">
+                <div class="calculator-container">
+                    <div class="calculator-main">
+                        <h1 class="calculator-title">Calorie Deficit Calculator</h1>
+                        <p class="calculator-description">Calculate your Total Daily Energy Expenditure (TDEE) and determine the perfect calorie deficit for your weight loss goals</p>
+                        
+                        <form id="calorie-form" class="calculator-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="age">Age (years) *</label>
+                                    <input type="number" id="age" name="age" min="15" max="100" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="gender">Gender *</label>
+                                    <select id="gender" name="gender" required>
+                                        <option value="">Select Gender</option>
+                                        <option value="male">Male</option>
+                                        <option value="female">Female</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="weight">Weight (kg) *</label>
+                                    <input type="number" id="weight" name="weight" min="30" max="300" step="0.1" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="height">Height (cm) *</label>
+                                    <input type="number" id="height" name="height" min="100" max="250" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="activity">Activity Level *</label>
+                                <select id="activity" name="activity" required>
+                                    <option value="">Select Activity Level</option>
+                                    <option value="1.2">Sedentary (little or no exercise)</option>
+                                    <option value="1.375">Lightly active (light exercise 1-3 days/week)</option>
+                                    <option value="1.55">Moderately active (moderate exercise 3-5 days/week)</option>
+                                    <option value="1.725">Very active (hard exercise 6-7 days/week)</option>
+                                    <option value="1.9">Extremely active (very hard exercise, physical job)</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="goal">Goal *</label>
+                                <select id="goal" name="goal" required>
+                                    <option value="">Select Your Goal</option>
+                                    <option value="loss">Weight Loss</option>
+                                    <option value="maintenance">Weight Maintenance</option>
+                                    <option value="gain">Weight Gain</option>
+                                </select>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary">Calculate My Calories</button>
+                        </form>
+                        
+                        <div id="results" class="results" style="display: none;">
+                            <h3>Your Calorie Recommendations</h3>
+                            <div class="result-value" id="tdee-result">0</div>
+                            <div class="result-unit">calories per day (TDEE)</div>
+                            
+                            <div style="margin-top: 2rem;">
+                                <div class="result-value" id="goal-calories">0</div>
+                                <div class="result-unit">calories per day (Goal)</div>
+                            </div>
+                            
+                            <div id="result-description" class="result-description"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="calculator-sidebar">
+                        <div class="ad-placeholder">
+                            <p>Advertisement Space</p>
+                        </div>
+                        
+                        <div class="info-card">
+                            <h3>Understanding TDEE</h3>
+                            <p>Total Daily Energy Expenditure (TDEE) is the total number of calories your body burns in a day, including:</p>
+                            <ul>
+                                <li>Basal Metabolic Rate (BMR)</li>
+                                <li>Physical activity</li>
+                                <li>Thermic effect of food</li>
+                                <li>Non-exercise activity</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="ad-placeholder">
+                            <p>Advertisement Space</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Section -->
+        <section class="blog-section">
+            <div class="blog-content">
+                <h2>The Complete Guide to Calorie Deficit for Safe and Effective Weight Loss</h2>
+                
+                <p>Understanding calorie deficit is fundamental to successful weight loss. This comprehensive guide will explain everything you need to know about creating a sustainable calorie deficit, calculating your Total Daily Energy Expenditure (TDEE), and achieving your weight loss goals safely and effectively.</p>
+                
+                <h3>What is a Calorie Deficit?</h3>
+                <p>A calorie deficit occurs when you consume fewer calories than your body burns in a day. This creates an energy imbalance that forces your body to use stored fat for fuel, resulting in weight loss. The key to successful weight loss is creating a moderate, sustainable calorie deficit that promotes fat loss while preserving muscle mass.</p>
+                
+                <p>When you maintain a calorie deficit over time, your body will:</p>
+                <ul>
+                    <li>Burn stored fat for energy</li>
+                    <li>Gradually reduce your body weight</li>
+                    <li>Improve your body composition</li>
+                    <li>Enhance metabolic health markers</li>
+                </ul>
+                
+                <h3>Understanding Total Daily Energy Expenditure (TDEE)</h3>
+                <p>Your Total Daily Energy Expenditure (TDEE) represents the total number of calories your body burns in a 24-hour period. It's calculated using several components:</p>
+                
+                <h4>1. Basal Metabolic Rate (BMR)</h4>
+                <p>BMR accounts for 60-75% of your total daily energy expenditure and represents the calories needed for basic bodily functions like breathing, circulation, and cell production. Our calculator uses the scientifically validated Mifflin-St Jeor equation:</p>
+                <ul>
+                    <li><strong>Men:</strong> BMR = (10 × weight in kg) + (6.25 × height in cm) - (5 × age) + 5</li>
+                    <li><strong>Women:</strong> BMR = (10 × weight in kg) + (6.25 × height in cm) - (5 × age) - 161</li>
+                </ul>
+                
+                <h4>2. Physical Activity Factor</h4>
+                <p>The activity multiplier accounts for your daily physical activity level:</p>
+                <ul>
+                    <li><strong>Sedentary (1.2):</strong> Little to no exercise, desk job</li>
+                    <li><strong>Lightly Active (1.375):</strong> Light exercise 1-3 days per week</li>
+                    <li><strong>Moderately Active (1.55):</strong> Moderate exercise 3-5 days per week</li>
+                    <li><strong>Very Active (1.725):</strong> Hard exercise 6-7 days per week</li>
+                    <li><strong>Extremely Active (1.9):</strong> Very hard exercise, physical job</li>
+                </ul>
+                
+                <h3>Creating the Right Calorie Deficit</h3>
+                <p>The ideal calorie deficit depends on your goals and current situation. Here's what you need to know:</p>
+                
+                <h4>For Weight Loss</h4>
+                <p>A deficit of 500 calories per day typically results in losing about 1 pound (0.45 kg) per week. This is considered a safe and sustainable rate of weight loss. For more aggressive weight loss, a deficit of 750-1000 calories per day can result in 1.5-2 pounds per week, but this should only be attempted under medical supervision.</p>
+                
+                <h4>For Weight Maintenance</h4>
+                <p>To maintain your current weight, aim to consume calories equal to your TDEE. This creates energy balance where calories in equal calories out.</p>
+                
+                <h4>For Weight Gain</h4>
+                <p>A calorie surplus of 300-500 calories per day can support healthy weight gain, ideally combined with resistance training to promote muscle growth rather than fat gain.</p>
+                
+                <h3>Benefits of Proper Calorie Deficit</h3>
+                <p>When implemented correctly, a calorie deficit offers numerous health benefits:</p>
+                
+                <h4>Weight Loss Benefits</h4>
+                <ul>
+                    <li><strong>Reduced Body Fat:</strong> Targeted fat loss while preserving muscle mass</li>
+                    <li><strong>Improved Body Composition:</strong> Better muscle-to-fat ratio</li>
+                    <li><strong>Enhanced Mobility:</strong> Easier movement and physical activity</li>
+                    <li><strong>Better Sleep:</strong> Improved sleep quality and duration</li>
+                </ul>
+                
+                <h4>Health Benefits</h4>
+                <ul>
+                    <li><strong>Reduced Disease Risk:</strong> Lower risk of type 2 diabetes, heart disease, and certain cancers</li>
+                    <li><strong>Improved Blood Pressure:</strong> Better cardiovascular health</li>
+                    <li><strong>Enhanced Insulin Sensitivity:</strong> Better blood sugar control</li>
+                    <li><strong>Reduced Inflammation:</strong> Lower systemic inflammation markers</li>
+                </ul>
+                
+                <h3>Potential Risks and How to Avoid Them</h3>
+                <p>While calorie deficit is effective for weight loss, extreme deficits can be dangerous:</p>
+                
+                <h4>Common Risks</h4>
+                <ul>
+                    <li><strong>Muscle Loss:</strong> Excessive deficit can lead to muscle breakdown</li>
+                    <li><strong>Metabolic Slowdown:</strong> Very low calories can slow metabolism</li>
+                    <li><strong>Nutrient Deficiencies:</strong> Insufficient calories may lead to micronutrient gaps</li>
+                    <li><strong>Energy Depletion:</strong> Fatigue, weakness, and poor performance</li>
+                    <li><strong>Hormonal Imbalances:</strong> Disrupted hormone production</li>
+                </ul>
+                
+                <h4>Prevention Strategies</h4>
+                <ul>
+                    <li><strong>Moderate Deficit:</strong> Aim for 500-750 calorie deficit maximum</li>
+                    <li><strong>High Protein Intake:</strong> Consume 1.6-2.2g protein per kg body weight</li>
+                    <li><strong>Resistance Training:</strong> Preserve muscle mass with strength training</li>
+                    <li><strong>Nutrient-Dense Foods:</strong> Focus on whole, unprocessed foods</li>
+                    <li><strong>Regular Monitoring:</strong> Track progress and adjust as needed</li>
+                </ul>
+                
+                <h3>Tips for Successful Calorie Deficit</h3>
+                <p>Implementing these strategies will help you achieve sustainable weight loss:</p>
+                
+                <h4>Nutrition Strategies</h4>
+                <ul>
+                    <li><strong>Prioritize Protein:</strong> Include lean protein in every meal to support muscle mass</li>
+                    <li><strong>Eat More Vegetables:</strong> High-volume, low-calorie foods help with satiety</li>
+                    <li><strong>Stay Hydrated:</strong> Drink plenty of water throughout the day</li>
+                    <li><strong>Plan Your Meals:</strong> Meal prep helps maintain consistency</li>
+                    <li><strong>Read Labels:</strong> Be aware of hidden calories in processed foods</li>
+                </ul>
+                
+                <h4>Lifestyle Strategies</h4>
+                <ul>
+                    <li><strong>Track Your Intake:</strong> Use food diaries or apps to monitor calories</li>
+                    <li><strong>Exercise Regularly:</strong> Combine cardio and strength training</li>
+                    <li><strong>Get Adequate Sleep:</strong> 7-9 hours per night supports weight loss</li>
+                    <li><strong>Manage Stress:</strong> High stress can hinder weight loss progress</li>
+                    <li><strong>Be Patient:</strong> Sustainable weight loss takes time</li>
+                </ul>
+                
+                <h3>Monitoring Your Progress</h3>
+                <p>Regular monitoring helps ensure you're on track and allows for necessary adjustments:</p>
+                
+                <h4>Key Metrics to Track</h4>
+                <ul>
+                    <li><strong>Body Weight:</strong> Weigh yourself weekly at the same time</li>
+                    <li><strong>Body Measurements:</strong> Track waist, hip, and other measurements</li>
+                    <li><strong>Body Fat Percentage:</strong> Use our body fat calculator for accuracy</li>
+                    <li><strong>Energy Levels:</strong> Monitor how you feel throughout the day</li>
+                    <li><strong>Performance:</strong> Track strength and endurance changes</li>
+                </ul>
+                
+                <h4>When to Adjust Your Plan</h4>
+                <ul>
+                    <li><strong>Weight Loss Plateau:</strong> Consider adjusting calories or activity</li>
+                    <li><strong>Excessive Fatigue:</strong> May need to increase calories slightly</li>
+                    <li><strong>Muscle Loss:</strong> Increase protein and add resistance training</li>
+                    <li><strong>Lack of Progress:</strong> Reassess your calorie tracking accuracy</li>
+                </ul>
+                
+                <h3>Common Mistakes to Avoid</h3>
+                <p>Many people make these common mistakes when creating a calorie deficit:</p>
+                
+                <ul>
+                    <li><strong>Too Aggressive:</strong> Starting with too large a deficit</li>
+                    <li><strong>Ignoring Macros:</strong> Focusing only on calories, not nutrients</li>
+                    <li><strong>Inconsistent Tracking:</strong> Not accurately measuring portions</li>
+                    <li><strong>Skipping Meals:</strong> This can lead to overeating later</li>
+                    <li><strong>Neglecting Exercise:</strong> Relying solely on diet for weight loss</li>
+                    <li><strong>Unrealistic Expectations:</strong> Expecting rapid, unsustainable results</li>
+                </ul>
+                
+                <h3>Conclusion</h3>
+                <p>Creating a sustainable calorie deficit is the foundation of successful weight loss. By understanding your TDEE, implementing a moderate deficit, and following evidence-based strategies, you can achieve your weight loss goals while maintaining your health and energy levels. Remember that consistency, patience, and a balanced approach are key to long-term success.</p>
+                
+                <p>Use our calorie deficit calculator to get personalized recommendations based on your specific needs, and always consult with healthcare professionals before making significant changes to your diet or exercise routine.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-left">
+                    <h3>Bodyfitcalculator</h3>
+                    <p>Professional health calculators for accurate fitness and nutrition planning.</p>
+                </div>
+                <div class="footer-center">
+                    <h4>Calculators</h4>
+                    <ul>
+                        <li><a href="calorie-calculator.html">Calorie Deficit Calculator</a></li>
+                        <li><a href="body-fat-calculator.html">Body Fat Calculator</a></li>
+                    </ul>
+                </div>
+                <div class="footer-right">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#privacy">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Bodyfitcalculator. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

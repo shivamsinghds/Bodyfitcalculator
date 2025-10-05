@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Body Fat Calculator - Bodyfitcalculator</title>
+    <meta name="description" content="Calculate your body fat percentage using the Navy method. Free body fat calculator with waist, hip, and neck measurements. Get accurate body fat estimates and health ranges.">
+    <meta name="keywords" content="body fat calculator, Navy method, body fat percentage, body composition, fitness calculator, health calculator">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Body Fat Calculator",
+        "description": "Free body fat percentage calculator using Navy method measurements",
+        "url": "https://healthcalc.com/body-fat-calculator.html",
+        "applicationCategory": "HealthApplication",
+        "operatingSystem": "Any"
+    }
+    </script>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-container">
+                <div class="logo">
+                    <a href="index.html"><h1>Bodyfitcalculator</h1></a>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="calorie-calculator.html" class="nav-link">Calorie Deficit Calculator</a></li>
+                    <li><a href="body-fat-calculator.html" class="nav-link active">Body Fat Calculator</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main">
+        <section class="calculator-page">
+            <div class="container">
+                <div class="calculator-container">
+                    <div class="calculator-main">
+                        <h1 class="calculator-title">Body Fat Calculator</h1>
+                        <p class="calculator-description">Estimate your body fat percentage using the Navy method with waist, hip, and neck measurements</p>
+                        
+                        <form id="bf-form" class="calculator-form">
+                            <div class="form-group">
+                                <label for="bf-gender">Gender *</label>
+                                <select id="bf-gender" name="gender" required>
+                                    <option value="">Select Gender</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="bf-weight">Weight (kg) *</label>
+                                    <input type="number" id="bf-weight" name="weight" min="30" max="300" step="0.1" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="bf-height">Height (cm) *</label>
+                                    <input type="number" id="bf-height" name="height" min="100" max="250" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="waist">Waist Circumference (cm) *</label>
+                                <input type="number" id="waist" name="waist" min="50" max="200" step="0.1" required>
+                                <small>Measure at the narrowest point, usually just above the belly button</small>
+                            </div>
+                            
+                            <div class="form-group" id="hip-group" style="display: none;">
+                                <label for="hip">Hip Circumference (cm) *</label>
+                                <input type="number" id="hip" name="hip" min="50" max="200" step="0.1">
+                                <small>Measure at the widest point of your hips (required for women)</small>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="neck">Neck Circumference (cm) *</label>
+                                <input type="number" id="neck" name="neck" min="5" max="100" step="0.1" required>
+                                <small>Measure just below the Adam's apple (men) or just below the voice box (women)</small>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary">Calculate Body Fat</button>
+                        </form>
+                        
+                        <div id="bf-results" class="results" style="display: none;">
+                            <h3>Your Body Fat Percentage</h3>
+                            <div class="result-value" id="bf-result">0</div>
+                            <div class="result-unit">% body fat</div>
+                            
+                            <div style="margin-top: 1rem;">
+                                <div class="result-unit" id="bf-category">Category</div>
+                            </div>
+                            
+                            <div id="bf-description" class="result-description"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="calculator-sidebar">
+                        <div class="ad-placeholder">
+                            <p>Advertisement Space</p>
+                        </div>
+                        
+                        <div class="info-card">
+                            <h3>Body Fat Ranges</h3>
+                            <h4>Men:</h4>
+                            <ul>
+                                <li>Essential: 2-5%</li>
+                                <li>Athletes: 6-13%</li>
+                                <li>Fitness: 14-17%</li>
+                                <li>Average: 18-24%</li>
+                                <li>Above Average: 25%+</li>
+                            </ul>
+                            <h4>Women:</h4>
+                            <ul>
+                                <li>Essential: 10-13%</li>
+                                <li>Athletes: 14-20%</li>
+                                <li>Fitness: 21-24%</li>
+                                <li>Average: 25-31%</li>
+                                <li>Above Average: 32%+</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="ad-placeholder">
+                            <p>Advertisement Space</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Section -->
+        <section class="blog-section">
+            <div class="blog-content">
+                <h2>Understanding Body Fat Percentage: The Complete Guide to Body Composition and Health</h2>
+                
+                <p>Body fat percentage is one of the most important indicators of overall health and fitness. Unlike body weight alone, body fat percentage provides insight into your body composition, helping you understand the ratio of fat to lean mass in your body. This comprehensive guide will explain everything you need to know about body fat percentage, measurement methods, health implications, and how to achieve optimal body composition.</p>
+                
+                <h3>What is Body Fat Percentage?</h3>
+                <p>Body fat percentage represents the proportion of your total body weight that consists of fat tissue. It's expressed as a percentage and provides a more accurate picture of your health than body weight alone. For example, a person weighing 70 kg with 20% body fat has 14 kg of fat and 56 kg of lean body mass (muscle, bone, organs, water).</p>
+                
+                <p>Body fat serves several essential functions in the body:</p>
+                <ul>
+                    <li><strong>Energy Storage:</strong> Fat provides a concentrated source of energy</li>
+                    <li><strong>Insulation:</strong> Helps maintain body temperature</li>
+                    <li><strong>Protection:</strong> Cushions organs and provides structural support</li>
+                    <li><strong>Hormone Production:</strong> Fat tissue produces important hormones</li>
+                    <li><strong>Nutrient Absorption:</strong> Helps absorb fat-soluble vitamins</li>
+                </ul>
+                
+                <h3>Different Types of Body Fat</h3>
+                <p>Not all body fat is created equal. Understanding the different types helps you better assess your health:</p>
+                
+                <h4>Essential Fat</h4>
+                <p>Essential fat is necessary for normal physiological function and includes fat in organs, bone marrow, and the central nervous system. This represents the minimum amount of fat required for survival:</p>
+                <ul>
+                    <li><strong>Men:</strong> 2-5% of total body weight</li>
+                    <li><strong>Women:</strong> 10-13% of total body weight</li>
+                </ul>
+                
+                <h4>Storage Fat</h4>
+                <p>Storage fat accumulates in adipose tissue and serves as an energy reserve. This includes:</p>
+                <ul>
+                    <li><strong>Subcutaneous Fat:</strong> Fat stored under the skin</li>
+                    <li><strong>Visceral Fat:</strong> Fat stored around internal organs</li>
+                </ul>
+                
+                <h4>Visceral vs Subcutaneous Fat</h4>
+                <p>Visceral fat (belly fat) is more dangerous than subcutaneous fat because it:</p>
+                <ul>
+                    <li>Surrounds vital organs</li>
+                    <li>Produces inflammatory chemicals</li>
+                    <li>Increases risk of chronic diseases</li>
+                    <li>Affects hormone production</li>
+                </ul>
+                
+                <h3>Body Fat Measurement Methods</h3>
+                <p>Several methods exist for measuring body fat percentage, each with different levels of accuracy and accessibility:</p>
+                
+                <h4>1. Navy Method (Circumference Measurements)</h4>
+                <p>The Navy method, used in our calculator, estimates body fat using circumference measurements. It's:</p>
+                <ul>
+                    <li><strong>Cost-effective:</strong> Requires only a measuring tape</li>
+                    <li><strong>Accessible:</strong> Can be done at home</li>
+                    <li><strong>Reasonably accurate:</strong> Within 3-4% of DEXA scans</li>
+                    <li><strong>Convenient:</strong> No special equipment needed</li>
+                </ul>
+                
+                <p><strong>Navy Method Formulas:</strong></p>
+                <ul>
+                    <li><strong>Men:</strong> BF% = 86.010 × log10(waist - neck) - 70.041 × log10(height) + 36.76</li>
+                    <li><strong>Women:</strong> BF% = 163.205 × log10(waist + hip - neck) - 97.684 × log10(height) - 78.387</li>
+                </ul>
+                
+                <h4>2. Dual-Energy X-ray Absorptiometry (DEXA)</h4>
+                <p>DEXA scans are considered the gold standard for body composition analysis:</p>
+                <ul>
+                    <li><strong>Most accurate:</strong> Within 1-2% accuracy</li>
+                    <li><strong>Detailed analysis:</strong> Shows regional fat distribution</li>
+                    <li><strong>Bone density:</strong> Also measures bone mineral density</li>
+                    <li><strong>Expensive:</strong> Costs $100-300 per scan</li>
+                </ul>
+                
+                <h4>3. Bioelectrical Impedance Analysis (BIA)</h4>
+                <p>BIA devices measure electrical resistance through the body:</p>
+                <ul>
+                    <li><strong>Quick and easy:</strong> Takes only minutes</li>
+                    <li><strong>Affordable:</strong> Home scales available</li>
+                    <li><strong>Variable accuracy:</strong> Affected by hydration and other factors</li>
+                    <li><strong>Convenient:</strong> Can be done regularly</li>
+                </ul>
+                
+                <h4>4. Skinfold Calipers</h4>
+                <p>Skinfold measurements use calipers to measure subcutaneous fat thickness:</p>
+                <ul>
+                    <li><strong>Cost-effective:</strong> Inexpensive equipment</li>
+                    <li><strong>Portable:</strong> Can be used anywhere</li>
+                    <li><strong>Requires skill:</strong> Technique affects accuracy</li>
+                    <li><strong>Multiple sites:</strong> Measures various body locations</li>
+                </ul>
+                
+                <h4>5. Hydrostatic Weighing</h4>
+                <p>This method measures body density by weighing underwater:</p>
+                <ul>
+                    <li><strong>Very accurate:</strong> Considered gold standard historically</li>
+                    <li><strong>Requires equipment:</strong> Specialized facilities needed</li>
+                    <li><strong>Uncomfortable:</strong> Requires complete submersion</li>
+                    <li><strong>Limited availability:</strong> Not widely accessible</li>
+                </ul>
+                
+                <h3>Healthy Body Fat Ranges</h3>
+                <p>Optimal body fat percentage varies by age, gender, and individual goals:</p>
+                
+                <h4>Body Fat Categories for Men</h4>
+                <ul>
+                    <li><strong>Essential Fat:</strong> 2-5% - Minimum required for health</li>
+                    <li><strong>Athletes:</strong> 6-13% - Elite athletes and bodybuilders</li>
+                    <li><strong>Fitness:</strong> 14-17% - Very fit individuals</li>
+                    <li><strong>Average:</strong> 18-24% - Healthy range for most men</li>
+                    <li><strong>Above Average:</strong> 25%+ - May indicate health concerns</li>
+                </ul>
+                
+                <h4>Body Fat Categories for Women</h4>
+                <ul>
+                    <li><strong>Essential Fat:</strong> 10-13% - Minimum required for health</li>
+                    <li><strong>Athletes:</strong> 14-20% - Elite athletes</li>
+                    <li><strong>Fitness:</strong> 21-24% - Very fit individuals</li>
+                    <li><strong>Average:</strong> 25-31% - Healthy range for most women</li>
+                    <li><strong>Above Average:</strong> 32%+ - May indicate health concerns</li>
+                </ul>
+                
+                <h3>Health Implications of Body Fat Percentage</h3>
+                <p>Body fat percentage significantly impacts overall health and disease risk:</p>
+                
+                <h4>Health Benefits of Optimal Body Fat</h4>
+                <ul>
+                    <li><strong>Reduced Disease Risk:</strong> Lower risk of heart disease, diabetes, and certain cancers</li>
+                    <li><strong>Better Metabolic Health:</strong> Improved insulin sensitivity and glucose control</li>
+                    <li><strong>Enhanced Physical Performance:</strong> Better strength-to-weight ratio</li>
+                    <li><strong>Improved Mobility:</strong> Easier movement and physical activity</li>
+                    <li><strong>Better Sleep Quality:</strong> Reduced sleep apnea risk</li>
+                    <li><strong>Enhanced Mental Health:</strong> Improved self-esteem and confidence</li>
+                </ul>
+                
+                <h4>Health Risks of High Body Fat</h4>
+                <ul>
+                    <li><strong>Cardiovascular Disease:</strong> Increased risk of heart attack and stroke</li>
+                    <li><strong>Type 2 Diabetes:</strong> Higher insulin resistance and blood sugar issues</li>
+                    <li><strong>High Blood Pressure:</strong> Increased cardiovascular strain</li>
+                    <li><strong>Joint Problems:</strong> Extra stress on joints and bones</li>
+                    <li><strong>Sleep Apnea:</strong> Breathing problems during sleep</li>
+                    <li><strong>Certain Cancers:</strong> Increased risk of breast, colon, and other cancers</li>
+                </ul>
+                
+                <h4>Health Risks of Very Low Body Fat</h4>
+                <ul>
+                    <li><strong>Hormonal Imbalances:</strong> Disrupted reproductive hormones</li>
+                    <li><strong>Weakened Immune System:</strong> Increased infection risk</li>
+                    <li><strong>Bone Density Loss:</strong> Higher osteoporosis risk</li>
+                    <li><strong>Energy Depletion:</strong> Chronic fatigue and weakness</li>
+                    <li><strong>Organ Damage:</strong> Insufficient fat for organ protection</li>
+                </ul>
+                
+                <h3>Factors Affecting Body Fat Percentage</h3>
+                <p>Several factors influence your body fat percentage:</p>
+                
+                <h4>Genetic Factors</h4>
+                <ul>
+                    <li><strong>Metabolism:</strong> Genetic predisposition to metabolic rate</li>
+                    <li><strong>Fat Distribution:</strong> Where your body stores fat</li>
+                    <li><strong>Muscle Building:</strong> Natural ability to build muscle</li>
+                    <li><strong>Appetite Regulation:</strong> Genetic hunger and satiety signals</li>
+                </ul>
+                
+                <h4>Lifestyle Factors</h4>
+                <ul>
+                    <li><strong>Diet Quality:</strong> Nutrient-dense vs processed foods</li>
+                    <li><strong>Physical Activity:</strong> Exercise type, frequency, and intensity</li>
+                    <li><strong>Sleep Quality:</strong> Duration and quality of sleep</li>
+                    <li><strong>Stress Levels:</strong> Chronic stress affects fat storage</li>
+                    <li><strong>Hydration:</strong> Water intake affects metabolism</li>
+                </ul>
+                
+                <h4>Age-Related Changes</h4>
+                <ul>
+                    <li><strong>Metabolic Slowdown:</strong> BMR decreases with age</li>
+                    <li><strong>Muscle Loss:</strong> Sarcopenia reduces muscle mass</li>
+                    <li><strong>Hormonal Changes:</strong> Menopause and andropause effects</li>
+                    <li><strong>Activity Levels:</strong> Often decrease with age</li>
+                </ul>
+                
+                <h3>How to Reduce Body Fat Percentage</h3>
+                <p>Reducing body fat percentage requires a comprehensive approach:</p>
+                
+                <h4>Nutrition Strategies</h4>
+                <ul>
+                    <li><strong>Calorie Deficit:</strong> Consume fewer calories than you burn</li>
+                    <li><strong>High Protein:</strong> 1.6-2.2g per kg body weight daily</li>
+                    <li><strong>Whole Foods:</strong> Minimize processed foods</li>
+                    <li><strong>Fiber Intake:</strong> 25-35g daily for satiety</li>
+                    <li><strong>Hydration:</strong> 2.5-3.5 liters of water daily</li>
+                    <li><strong>Meal Timing:</strong> Consistent eating schedule</li>
+                </ul>
+                
+                <h4>Exercise Strategies</h4>
+                <ul>
+                    <li><strong>Resistance Training:</strong> 2-3 times per week minimum</li>
+                    <li><strong>Cardiovascular Exercise:</strong> 150+ minutes moderate intensity weekly</li>
+                    <li><strong>High-Intensity Training:</strong> HIIT for efficient fat burning</li>
+                    <li><strong>Compound Movements:</strong> Multi-joint exercises</li>
+                    <li><strong>Progressive Overload:</strong> Gradually increase intensity</li>
+                    <li><strong>Recovery:</strong> Adequate rest between sessions</li>
+                </ul>
+                
+                <h4>Lifestyle Modifications</h4>
+                <ul>
+                    <li><strong>Sleep Optimization:</strong> 7-9 hours quality sleep nightly</li>
+                    <li><strong>Stress Management:</strong> Meditation, yoga, or relaxation techniques</li>
+                    <li><strong>Activity Increase:</strong> More daily movement and steps</li>
+                    <li><strong>Habit Formation:</strong> Consistent routines and behaviors</li>
+                    <li><strong>Social Support:</strong> Accountability partners or groups</li>
+                </ul>
+                
+                <h3>Monitoring and Tracking Progress</h3>
+                <p>Regular monitoring helps ensure you're making progress toward your goals:</p>
+                
+                <h4>Measurement Frequency</h4>
+                <ul>
+                    <li><strong>Body Fat:</strong> Monthly measurements for trends</li>
+                    <li><strong>Body Weight:</strong> Weekly weigh-ins</li>
+                    <li><strong>Measurements:</strong> Monthly circumference measurements</li>
+                    <li><strong>Photos:</strong> Monthly progress photos</li>
+                    <li><strong>Performance:</strong> Regular strength and fitness tests</li>
+                </ul>
+                
+                <h4>What to Track</h4>
+                <ul>
+                    <li><strong>Body Fat Percentage:</strong> Primary goal metric</li>
+                    <li><strong>Lean Body Mass:</strong> Ensure muscle preservation</li>
+                    <li><strong>Waist Circumference:</strong> Visceral fat indicator</li>
+                    <li><strong>Energy Levels:</strong> Overall well-being</li>
+                    <li><strong>Sleep Quality:</strong> Recovery and health marker</li>
+                </ul>
+                
+                <h3>Common Myths About Body Fat</h3>
+                <p>Several misconceptions exist about body fat and body composition:</p>
+                
+                <h4>Myth: Spot Reduction Works</h4>
+                <p><strong>Reality:</strong> You cannot target fat loss in specific areas through exercise. Fat loss occurs systemically throughout the body.</p>
+                
+                <h4>Myth: Cardio is Best for Fat Loss</h4>
+                <p><strong>Reality:</strong> While cardio burns calories, resistance training preserves muscle mass and increases metabolic rate.</p>
+                
+                <h4>Myth: Very Low Body Fat is Always Better</h4>
+                <p><strong>Reality:</strong> Extremely low body fat can be unhealthy and unsustainable for most people.</p>
+                
+                <h4>Myth: BMI is More Important Than Body Fat</h4>
+                <p><strong>Reality:</strong> Body fat percentage provides more accurate health information than BMI alone.</p>
+                
+                <h3>When to Consult Healthcare Professionals</h3>
+                <p>Consider professional guidance in these situations:</p>
+                
+                <ul>
+                    <li><strong>Extreme Values:</strong> Very high or very low body fat percentages</li>
+                    <li><strong>Health Concerns:</strong> Existing medical conditions</li>
+                    <li><strong>Rapid Changes:</strong> Sudden unexplained changes in body composition</li>
+                    <li><strong>Plateau Periods:</strong> Extended periods without progress</li>
+                    <li><strong>Eating Disorders:</strong> Signs of disordered eating patterns</li>
+                </ul>
+                
+                <h3>Conclusion</h3>
+                <p>Body fat percentage is a crucial health metric that provides valuable insight into your overall health and fitness. By understanding healthy ranges, measurement methods, and strategies for improvement, you can make informed decisions about your health and fitness journey.</p>
+                
+                <p>Remember that optimal body fat percentage varies by individual, and the goal should be achieving a healthy range that supports your overall well-being. Use our Navy method body fat calculator to get an accurate estimate of your current body fat percentage, and always consult with healthcare professionals when making significant changes to your health and fitness routine.</p>
+                
+                <p>Focus on sustainable lifestyle changes rather than quick fixes, and prioritize overall health over achieving extreme body fat percentages. With patience, consistency, and the right approach, you can achieve and maintain a healthy body composition that supports your long-term health and fitness goals.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-left">
+                    <h3>Bodyfitcalculator</h3>
+                    <p>Professional health calculators for accurate fitness and nutrition planning.</p>
+                </div>
+                <div class="footer-center">
+                    <h4>Calculators</h4>
+                    <ul>
+                        <li><a href="calorie-calculator.html">Calorie Deficit Calculator</a></li>
+                        <li><a href="body-fat-calculator.html">Body Fat Calculator</a></li>
+                    </ul>
+                </div>
+                <div class="footer-right">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#privacy">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Bodyfitcalculator. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
